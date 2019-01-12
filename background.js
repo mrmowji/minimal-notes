@@ -18,7 +18,7 @@ function appendSelectionToNotes() {
       return;
     }
     chrome.storage.sync.get(['notes'], function(result) {
-      var notes = (result.notes + "\n- " + selection[0]).trim();
+      var notes = (result.notes + "\n- " + selection[0].trim()).trim();
       chrome.storage.sync.set({notes: notes}, function() {
       });
     });
