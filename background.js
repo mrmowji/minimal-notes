@@ -1,11 +1,26 @@
+let storage = chrome.storage.sync;
+
 chrome.runtime.onInstalled.addListener(function() {
-  chrome.storage.sync.set({notes: ''}, function() {
+  storage.set({notes: ''}, function() {
     console.log("Initialized.");
   });
 });
 
+chrome.contextMenus.create({
+  id: "note",
+  title: "Take note", 
+  contexts: ["selection"]
+});
+
+chrome.contextMenus.onClicked.addListener(function(info, tab) {
+  if (info.menuItemId == "note") {
+    appendSelectionToNotes();
+  }
+});
+
 chrome.commands.onCommand.addListener(function(command) {
-  if (command == "append-notes") {
+  console.log(command);
+  if (command == "note") {
     appendSelectionToNotes();
   }
 });
@@ -17,9 +32,10 @@ function appendSelectionToNotes() {
     if (chrome.runtime.lastError !== undefined) {
       return;
     }
-    chrome.storage.sync.get(['notes'], function(result) {
-      var notes = (result.notes + "\n- " + selection[0].trim()).trim();
-      chrome.storage.sync.set({notes: notes}, function() {
+    storage.get(['notes'], function(result) {
+      let notes = (result.notes + "\n- " + selection[0].trim()).trim();
+      console.log(notes);
+      storage.set({notes: notes}, function() {
       });
     });
   });

@@ -1,12 +1,12 @@
-var textarea;
-var button;
+let textarea;
+let button;
 
 document.addEventListener('DOMContentLoaded',function() {
   textarea = document.getElementById("notes-textarea");
   button = document.getElementById("copy-button");
 
   chrome.storage.sync.get(['notes'], function(result) {
-    textarea.innerText = result.notes;
+    textarea.value = result.notes;
     textarea.scrollTop = textarea.scrollHeight;
   });
 
@@ -19,4 +19,4 @@ document.addEventListener('DOMContentLoaded',function() {
     textarea.select();
     document.execCommand("copy");
   };
-},false);
+}, false);

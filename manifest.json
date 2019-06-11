@@ -1,9 +1,9 @@
 {
   "name": "Minimal Notes",
-  "description": "That's minimal. Test it.",
-  "version": "1.0.1",
+  "description": "It's minimal. Test it.",
+  "version": "1.0.2",
   "manifest_version": 2,
-  "permissions": ["storage", "activeTab"],
+  "permissions": ["storage", "activeTab", "contextMenus"],
   "browser_action": {
     "default_popup": "popup.html",
     "default_icon": "images/icon-128.png"
@@ -16,15 +16,6 @@
   },
   "background": {
     "scripts": ["background.js"],
-    "persistent": false
-  },
-  "commands": {
-    "append-notes": {
-      "suggested_key": {
-        "default": "Alt+N",
-        "mac": "Alt+N"
-      },
-      "description": "Append selection to the notes"
-    }
+    "persistent": true
   }
 }
