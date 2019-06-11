@@ -1,7 +1,7 @@
 {
   "name": "Minimal Notes",
   "description": "It's minimal. Test it.",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "manifest_version": 2,
   "permissions": ["storage", "activeTab", "contextMenus"],
   "browser_action": {
